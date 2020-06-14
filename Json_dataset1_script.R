@@ -1,0 +1,25 @@
+x <- 1:166584
+latitude_function <- function(x){json_data1$dataset[[x]]$latitude}
+latitude <- sapply(x,latitude_function)
+longitude_function <- function(x){json_data1$dataset[[x]]$longitude}
+longitude <- sapply(x,longitude_function)
+id_function <- function(x){json_data1$dataset[[x]]$id}
+id <- sapply(x,id_function)
+speed_function <- function(x){json_data1$dataset[[x]]$speed}
+speed <- sapply(x,speed_function)
+acc_x_mean_function <- function(x){mean(json_data1$dataset[[x]]$accelerometer$x)}
+acc_x_mean <- sapply(x,acc_x_mean_function)
+acc_y_mean_function <- function(x){mean(json_data1$dataset[[x]]$accelerometer$y)}
+acc_y_mean <- sapply(x,acc_y_mean_function)
+acc_z_mean_function <- function(x){mean(json_data1$dataset[[x]]$accelerometer$z)}
+acc_z_mean <- sapply(x,acc_z_mean_function)
+acc_x_median_function <- function(x){median(json_data1$dataset[[x]]$accelerometer$x)}
+acc_x_median <- sapply(x,acc_x_median_function)
+acc_y_median_function <- function(x){median(json_data1$dataset[[x]]$accelerometer$y)}
+acc_y_median <- sapply(x,acc_y_median_function)
+acc_z_median_function <- function(x){median(json_data1$dataset[[x]]$accelerometer$z)}
+acc_z_median <- sapply(x,acc_z_median_function)
+m <- cbind(id,speed,latitude,longitude,acc_x_mean,acc_y_mean,acc_z_mean,acc_x_median,acc_y_median,acc_z_median)
+df <- as.data.frame(m)
+write.csv(df,file = "json_dataset_1.csv")
+
